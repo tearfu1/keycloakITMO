@@ -6,10 +6,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - keycloack.192.168.49.2.nip.io
+      - KEYCLOAK_HOST
       secretName: tls-secret
   rules:
-  - host: keycloack.192.168.49.2.nip.io
+  - host: KEYCLOAK_HOST 
     http:
       paths:
       - path: /
