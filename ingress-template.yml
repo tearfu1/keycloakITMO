@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+  namespace: hbr-keycloak
+spec:
+  tls:
+    - hosts:
+      - KEYCLOAK_HOST
+      secretName: tls-secret
+  rules:
+  - host: KEYCLOAK_HOST 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: keycloak
+            port:
+              number: 8080
