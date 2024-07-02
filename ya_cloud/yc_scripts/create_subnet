@@ -1,0 +1,6 @@
+yc vpc subnet create \
+  --name yc-subnet-a \
+  --zone ru-central1-a \
+  --range 10.1.2.0/24 \
+  --network-name yc-network \
+  --description "project subnet"
