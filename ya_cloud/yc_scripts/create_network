@@ -1,0 +1,6 @@
+# создание облачной сети в каталоге
+yc vpc network create \
+  --name yc-network \
+  --labels my-label=my-value \
+  --description "KeycloakITMO project"
+
