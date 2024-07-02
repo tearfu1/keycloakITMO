@@ -1,2 +1,3 @@
-ip_address=$(yc compute instance get yc-instance | grep address: | awk -F : '{print }' | tail -n 1)
-ssh -i ~/yc_vm_key yc-user@$ip_address
+ip_address=$(yc compute instance get yc-instance | grep address: | awk -F : '{print $2}' | tail -n 1)
+
+ssh -i ../yc_vm_key $ip_address -l yc-user
