@@ -14,7 +14,7 @@ spec:
   type: ClusterIP
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulState
 metadata:
   name: postgres
   namespace: hbr-keycloak

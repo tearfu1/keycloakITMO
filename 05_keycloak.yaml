@@ -15,14 +15,14 @@ spec:
   type: ClusterIP
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: keycloak
   namespace: hbr-keycloak
   labels:
     app: keycloak
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: keycloak
@@ -48,6 +48,8 @@ spec:
               name: keycloak-secrets
         - name: KC_PROXY
           value: "edge"
+        - name: PROXY_ADDRESS_FORWARDING
+          value: "true"
         - name: KC_LOG_LEVEL
           value: INFO
         - name: KC_DB
@@ -69,6 +71,12 @@ spec:
             secretKeyRef:
               name: postgres-credentials
               key: POSTGRES_PASSWORD
+        - name: JGROUPS_DISCOVERY_PROTOCOL
+          value: "kubernetes.KUBE_PING"
+        - name: JGROUPS_DISCOVERY_PROPERTIES
+          value: "dump_requests=false,namespace=hbr-keycloal,labels=keycloak"
+        - name: CACHE_OWNERS
+          value: "2"
         ports:
         - name: http
           containerPort: 8080
