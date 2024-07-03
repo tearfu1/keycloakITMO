@@ -1,20 +1,3 @@
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: postgres-pv
-  namespace: hbr-keycloak
-  labels:
-    type: local
-    app: postgres
-spec:
-  storageClassName: "standard"
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: "/mnt/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
