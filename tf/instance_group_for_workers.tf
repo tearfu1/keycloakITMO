@@ -8,8 +8,6 @@ resource "yandex_compute_instance_group" "k8s-workers" {
     yandex_resourcemanager_folder_iam_binding.editor,
     yandex_vpc_network.k8s-network,
     yandex_vpc_subnet.k8s-subnet-1,
-    yandex_vpc_subnet.k8s-subnet-2,
-    yandex_vpc_subnet.k8s-subnet-3,
   ]
 
   instance_template {
@@ -34,15 +32,13 @@ resource "yandex_compute_instance_group" "k8s-workers" {
       network_id = yandex_vpc_network.k8s-network.id
       subnet_ids = [
         yandex_vpc_subnet.k8s-subnet-1.id,
-        yandex_vpc_subnet.k8s-subnet-2.id,
-        yandex_vpc_subnet.k8s-subnet-3.id,
       ]
       # Флаг nat true указывает что виртуалкам будет предоставлен публичный IP адрес.
       nat = true
     }
 
     metadata = {
-      ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+      ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
     }
     network_settings {
       type = "STANDARD"
@@ -58,8 +54,6 @@ resource "yandex_compute_instance_group" "k8s-workers" {
   allocation_policy {
     zones = [
       "ru-central1-a",
-      "ru-central1-b",
-      "ru-central1-d",
     ]
   }
 
