@@ -12,7 +12,7 @@ spec:
     targetPort: 8080
   selector:
     app: keycloak
-  type: LoadBalancer
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -72,6 +72,4 @@ spec:
         ports:
         - name: http
           containerPort: 8080
-      nodeSelector:
-        role: "worker"
 
