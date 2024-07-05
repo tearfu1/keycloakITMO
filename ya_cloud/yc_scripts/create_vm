@@ -1,5 +1,0 @@
-yc compute instance create \
-  --name yc-instance \
-  --network-interface subnet-name=yc-subnet-a,nat-ip-version=ipv4 \
-  --zone ru-central1-a \
-  --ssh-key ../yc_vm_key.pub
